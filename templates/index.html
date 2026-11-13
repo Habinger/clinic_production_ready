@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e3638">
+  <meta name="description" content="Browse clinic appointment availability and book your visit.">
+  <title>Carewell Clinic | Book your appointment</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <div class="topband"></div>
+  <header class="site-header"><a href="/" class="brand" aria-label="Carewell Clinic home"><span class="brand-icon" aria-hidden="true">✳</span><span>carewell<span class="brand-dot">.</span><small>CLINIC & WELLNESS</small></span></a><span class="header-side"><span class="status-dot"></span> Taking appointments</span></header>
+  <main>
+    <section class="hero">
+      <div class="hero-content"><div class="eyebrow"><span class="eyebrow-line"></span> THOUGHTFUL CARE, SIMPLIFIED</div><h1>Better care starts<br>with <em>one simple step.</em></h1><p>Find a time that works for you. Choose your healthcare provider, reserve an appointment, and get right back to your day.</p><a class="hero-cta" href="#appointments">Explore available appointments <span aria-hidden="true">↗</span></a><div class="hero-foot"><span class="small-icon">✓</span> Clear scheduling <span class="sep"></span> <span class="small-icon">✓</span> Instant confirmation</div></div>
+      <div class="hero-art" aria-hidden="true"><div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div><div class="hero-medical">✳</div><div class="hero-art-label">Your health.<br><strong>Our priority.</strong></div><div class="floater">✦</div></div>
+    </section>
+    <section id="appointments" class="appointments" aria-labelledby="appointments-title">
+      <div class="section-heading"><div><div class="eyebrow dark"><span class="eyebrow-line"></span> BOOK AN APPOINTMENT</div><h2 id="appointments-title">Find your next visit.</h2><p>Choose an available time below to get started.</p></div><div class="stepnote"><span>01</span> SELECT A TIME <span class="stepbar"></span> <span class="muted">02</span> YOUR DETAILS</div></div>
+      <div class="filters"><label class="filter-field" for="provider-filter"><span>Healthcare provider</span><select id="provider-filter"><option value="">All providers</option></select></label><div class="availability-key"><span class="available-marker"></span> Available times <span class="time-help">All times shown in your local timezone</span></div></div>
+      <div id="notice" class="notice" role="status" hidden></div>
+      <div id="slots" class="slots-grid" aria-live="polite"><div class="empty-panel">Loading appointments…</div></div>
+      <div class="list-footer"><span id="slot-count">Looking for available appointments</span><button type="button" id="refresh" class="link-button">↻ Refresh availability</button></div>
+    </section>
+    <section class="promise"><div><span>✧</span><h3>Care that fits your life.</h3></div><p>Your time matters. Book in minutes, receive an instant confirmation, and arrive knowing your visit is taken care of.</p></section>
+  </main>
+  <footer><span class="footer-brand">✳ carewell<span class="brand-dot">.</span></span><span>Made for simpler, more human healthcare.</span><span>© Carewell Clinic</span></footer>
+  <div class="overlay" id="booking-overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="close-modal" type="button" aria-label="Close booking form">×</button><div id="form-view"><div class="eyebrow dark">COMPLETE YOUR BOOKING</div><h2 id="modal-title">Almost there.</h2><p class="modal-sub">A few details and your appointment is set.</p><div class="selection" id="selected-slot"></div><form id="booking-form"><input type="hidden" id="csrf-token" value="{{ csrf_token }}"><label for="patient-name">Full name</label><input type="text" id="patient-name" name="name" maxlength="100" autocomplete="name" required placeholder="e.g. Ada Obi"><label for="patient-email">Email address</label><input type="email" id="patient-email" name="email" maxlength="254" autocomplete="email" required placeholder="e.g. ada@example.com"><p class="form-help">We’ll show your confirmation here after booking.</p><div id="form-error" class="form-error" role="alert" hidden></div><button class="submit-button" id="submit-booking" type="submit">Confirm appointment <span aria-hidden="true">→</span></button></form></div><div id="success-view" hidden><div class="success-icon">✓</div><div class="eyebrow dark">APPOINTMENT CONFIRMED</div><h2 id="success-title">You're all set.</h2><p class="modal-sub">Your appointment has been reserved successfully.</p><div id="confirmation-detail" class="confirmation-detail"></div><button type="button" class="submit-button" id="done-button">Back to appointments <span aria-hidden="true">→</span></button></div></div></div>
+</body>
+</html>
